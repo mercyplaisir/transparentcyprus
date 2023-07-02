@@ -1,0 +1,9 @@
+asgiref==3.7.2
+cssselect==1.2.0
+Django==4.2.2
+lxml==4.9.2
+Markdown==3.4.3
+Pygments==2.15.1
+pyquery==2.0.0
+sqlparse==0.4.4
+typing_extensions==4.7.0
