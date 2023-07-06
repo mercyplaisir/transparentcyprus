@@ -19,7 +19,8 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('realestate/',include('realestate.urls')),
+    path('',include("main.urls")),
+    path('realestate/',include("realestate.urls")),
     path('tourism/',include('tourism.urls')),
-    path("compincy/", include('compInCy.urls'))
+    path("compincy/", include('compInCy.urls')),
 ]

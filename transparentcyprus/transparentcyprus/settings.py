@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'main',
-    'compInCy',
-    'realestate',
-    'tourism'
+    'main.apps.MainConfig',
+    'compInCy.apps.CompincyConfig',
+    'realestate.apps.RealestateConfig',
+    'tourism.apps.TourismConfig'
 ]
 
 MIDDLEWARE = [
