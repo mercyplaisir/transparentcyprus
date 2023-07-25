@@ -2,5 +2,6 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('',views.default)
+    path('',views.default),
+    path('listOfOrg',views.listOfOrg)
 ]

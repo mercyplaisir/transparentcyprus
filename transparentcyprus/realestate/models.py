@@ -7,6 +7,9 @@ class Real_estate_mortgage_statistics(models.Model):
     mortgages = models.CharField(max_length=15)
     total_amount = models.CharField(max_length=15)
     categorie = models.ForeignKey(Categories,on_delete=models.SET_NULL,null=True)
+
+    
+
 class Real_estate_sales_to_foreigners(models.Model):
     month = models.CharField(max_length=15)
     description = models.CharField(max_length=70)
