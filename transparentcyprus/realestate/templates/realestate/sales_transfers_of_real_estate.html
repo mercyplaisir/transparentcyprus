@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <td>month</td>
+        <td>district</td>
+        <td>cases</td>
+        <td>temaxia</td>
+        <td>total_declared_amount</td>
+        <td>total_accepted_amount</td>
+    </tr>
+    {% for obj in objects %}
+    <tr>
+        <td>{{obj.month}}</td>
+        <td>{{obj.district}}</td>
+        <td>{{obj.cases}}</td>
+        <td>{{obj.temaxia}}</td>
+        <td>{{obj.total_declared_amount}}</td>
+        <td>{{obj.total_accepted_amount}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

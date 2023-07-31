@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+
+{% block content %}
+
+<table>
+<tr>
+
+<th>organisation_name</th>
+<th>registration_no</th>
+<th>organisation_type_code</th>
+<th>organisation_type</th>
+<th>organisation_sub_type</th>
+<th>name_status_code</th>
+<th>name_status</th>
+<th>registration_date</th>
+<th>organisation_status</th>
+<th>organisation_status_date</th>
+<th>address_seq_no</th>
+</tr>
+{% for obj in objects %}
+<tr>
+    <td>{{obj.organisation_name}}</td>
+    <td>{{obj.organisation_name}}</td>
+    <td>{{obj.registration_no}}</td>
+    <td>{{obj.organisation_type_code}}</td>
+    <td>{{obj.organisation_type}}</td>
+    <td>{{obj.organisation_sub_type}}</td>
+    <td>{{obj.name_status_code}}</td>
+    <td>{{obj.name_status}}</td>
+    <td>{{obj.registration_date}}</td>
+    <td>{{obj.organisation_status}}</td>
+    <td>{{obj.organisation_status_date}}</td>
+    <td>{{obj.address_seq_no}}</td>
+    
+</tr>
+{% endfor %}
+</table>
+
+{% endblock content %}

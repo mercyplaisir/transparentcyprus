@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+{% block content %}
+<table>
+    <tr>
+        <th>month</th>
+        <th>arrivals</th>
+    </tr>
+    {% for obj in objects %}
+    <tr>
+        <td>{{obj.month}}</td>
+        <td>{{obj.arrivals}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

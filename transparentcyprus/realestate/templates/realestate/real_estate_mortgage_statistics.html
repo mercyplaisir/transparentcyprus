@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+
+{% block content %}
+
+    <table>
+        <tr>
+            <th>month</th>
+            <th>district</th>
+            <th>mortgages</th>
+            <th>total amount</th>
+        </tr>
+        {%for obj in objects%}
+        <tr>
+            <td>{{obj.month}}</td>
+            <td>{{obj.district}}</td>
+            <td>{{obj.mortgages}}</td>
+            <td>{{obj.total_amount}}</td>
+        </tr> 
+        {% endfor %}
+    </table>
+{%endblock%}

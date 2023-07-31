@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+{% block content %}
+<table>
+    <tr>
+        <th>month</th>
+        <th>revenue_in_million_euros</th>
+        <th>revenue_per_capita_in_euros</th>
+    </tr>
+    {% for obj in objects %}
+    <tr>
+        <td>{{obj.month}}</td>
+        <td>{{obj.revenue_in_million_euros}}</td>
+            <td>{{obj.revenue_per_capita_in_euros}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

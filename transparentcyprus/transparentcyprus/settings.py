@@ -80,14 +80,14 @@ WSGI_APPLICATION = 'transparentcyprus.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.mysql',
-        'ENGINE' : 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE' : 'mysql.connector.django',
         'NAME': 'transparentcyprus',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306'
-        #'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+        # 'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }
 

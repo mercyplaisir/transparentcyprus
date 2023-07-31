@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+
+{% block content %}
+  <table>
+    <tr>
+      <td>month</td>
+      <td>nicosia</td>
+      <td>famagusta</td>
+      <td>larnaca</td>
+      <td>limassol</td>
+      <td>pafos</td>
+    </tr>
+    {% for obj in objects %}
+    <tr>
+      <td>{{obj.month}}</td>
+      <td>{{obj.nicosia}}</td>
+      <td>{{obj.famagusta}}</td>
+      <td>{{obj.larnaca}}</td>
+      <td>{{obj.limassol}}</td>
+      <td>{{obj.pafos}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock content %}

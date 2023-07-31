@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block style %}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+{% endblock style %}
+{% block content %}
+<table>
+    <tr>
+        <th>month</th>
+        <th>larnaca airport</th>
+        <th>paphos airport</th>
+        <th>total arrivals</th>
+    </tr>
+    {%for obj in objects%}
+    <tr>
+        <td>{{obj.month}}</td>
+        <td>{{obj.larnaca_airport}}</td>
+        <td>{{obj.paphos_airport}}</td>
+        <td>{{obj.total_arrivals}}</td>
+    </tr>
+    {%endfor%}
+</table>
+{% endblock content %}
