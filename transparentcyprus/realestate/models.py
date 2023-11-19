@@ -1,5 +1,6 @@
 from django.db import models
 from main.models import Categories
+
 # Create your models here.
 class Real_estate_mortgage_statistics(models.Model):
     month = models.CharField(max_length=15)

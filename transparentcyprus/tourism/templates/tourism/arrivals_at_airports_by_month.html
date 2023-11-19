@@ -6,6 +6,11 @@ table, th, td {
   }
 {% endblock style %}
 {% block content %}
+{% load static %}
+<div>
+<img src="{% static 'tourism/larn_paph_arrivals.png' %}">
+</div>
+<div>
 <table>
     <tr>
         <th>month</th>
@@ -22,4 +27,5 @@ table, th, td {
     </tr>
     {%endfor%}
 </table>
+</div>
 {% endblock content %}

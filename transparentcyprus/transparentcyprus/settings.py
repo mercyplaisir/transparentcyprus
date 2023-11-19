@@ -80,8 +80,8 @@ WSGI_APPLICATION = 'transparentcyprus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        # 'ENGINE' : 'mysql.connector.django',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE' : 'mysql.connector.django',
         'NAME': 'transparentcyprus',
         'USER': 'root',
         'PASSWORD': '',

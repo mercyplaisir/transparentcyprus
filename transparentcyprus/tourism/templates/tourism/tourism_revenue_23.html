@@ -5,7 +5,17 @@ table, th, td {
     border-collapse: collapse;
   }
 {% endblock style %}
+
 {% block content %}
+{% load static %}
+
+<div>
+    <div>
+        <img src="{% static 'tourism/tourism_revenue.png' %}" alt="" srcset="">
+    </div>
+</div>
+
+<div>
 <table>
     <tr>
         <th>month</th>
@@ -20,4 +30,5 @@ table, th, td {
     </tr>
     {% endfor %}
 </table>
+</div>
 {% endblock content %}

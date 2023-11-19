@@ -8,7 +8,19 @@ table, th, td {
 
 {% block content %}
 
+{% load static %}
+
+<div>
+</div>
+
+<div >
+    <img src="{% static 'realestate/nicosia_mortgages.png' %}" alt="stat" >
+    </div>
+    
+    <div>
+ 
     <table>
+
         <tr>
             <th>month</th>
             <th>district</th>
@@ -24,4 +36,7 @@ table, th, td {
         </tr> 
         {% endfor %}
     </table>
+    </div>
+
+
 {%endblock%}
