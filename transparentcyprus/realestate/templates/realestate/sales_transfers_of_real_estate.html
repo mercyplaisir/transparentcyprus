@@ -7,7 +7,12 @@ table, th, td {
 {% endblock style %}
 
 {% block content %}
-
+{% load static %}
+<div>
+{% for pat in paths %}
+<img src={% static pat %}>
+{% endfor %}
+</div>
 <table>
     <tr>
         <td>month</td>

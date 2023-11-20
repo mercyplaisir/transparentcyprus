@@ -7,6 +7,11 @@ table, th, td {
 {% endblock style %}
 
 {% block content %}
+{% load static %}
+<div>
+<img src={% static filename %}>
+</div>
+<div>
   <table>
     <tr>
       <td>month</td>
@@ -27,4 +32,5 @@ table, th, td {
     </tr>
     {% endfor %}
   </table>
+  </div>
 {% endblock content %}

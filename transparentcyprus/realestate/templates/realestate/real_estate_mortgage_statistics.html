@@ -14,7 +14,9 @@ table, th, td {
 </div>
 
 <div >
-    <img src="{% static 'realestate/nicosia_mortgages.png' %}" alt="stat" >
+{% for pat in paths %}
+    <img src={% static pat %} alt="stat" >
+    {% endfor %}
     </div>
     
     <div>
