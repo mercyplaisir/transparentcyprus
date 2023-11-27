@@ -3,5 +3,4 @@ from . import views
 
 urlpatterns = [
     path('',views.default),
-    path('listOfOrg',views.listOfOrg)
-]
+    path('listOfOrg',views.listOfOrg)]

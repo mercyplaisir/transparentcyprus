@@ -9,6 +9,17 @@ table, th, td {
 {% block content %}
 {% load static %}
 
+
+<p>Statistical data in relation to real estate sales to citizens of the European Union (excluding Cypriots) and citizens of Third States, by province. The data are on a monthly basis and include four subsets:
+</p>
+
+<li>
+<ul>a. Number of properties transferred (sales)</ul>
+<ul>b. Number of properties for which sales documents have been filed</ul>
+<ul>c. Number of buyers - transfers (sales)</ul>
+<ul>d. Number of buyers - filing of sales document</ul>
+</li>
+
 {% for typ in types_path %}
     <img src = {% static typ  %} >
 {% endfor %}

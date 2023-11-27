@@ -7,10 +7,18 @@ table, th, td {
 {% endblock style %}
 {% block content %}
 {% load static %}
+
+<p>
+Data concerning arrivals at Larnaca and Paphos airports. The data are on a monthly basis and refer to the period from January 2001 onwards.
+
+</p>
+
+
 <div>
 <img src="{% static 'tourism/larn_paph_arrivals.png' %}">
 </div>
 <div>
+
 <table>
     <tr>
         <th>month</th>
@@ -18,14 +26,16 @@ table, th, td {
         <th>paphos airport</th>
         <th>total arrivals</th>
     </tr>
-    {%for obj in objects%}
+    {%for obj in d%}
     <tr>
-        <td>{{obj.month}}</td>
-        <td>{{obj.larnaca_airport}}</td>
-        <td>{{obj.paphos_airport}}</td>
-        <td>{{obj.total_arrivals}}</td>
+        <td>{{obj.MONTH}}</td>
+        <td>{{obj.LARNACA_AIRPORT}}</td>
+        <td>{{obj.PAPHOS_AIRPORT}}</td>
+        <td>{{obj.TOTAL_ARRIVALS}}</td>
     </tr>
     {%endfor%}
 </table>
+
+
 </div>
 {% endblock content %}

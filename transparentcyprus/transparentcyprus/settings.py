@@ -79,15 +79,19 @@ WSGI_APPLICATION = 'transparentcyprus.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        'ENGINE' : 'mysql.connector.django',
-        'NAME': 'transparentcyprus',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306'
-        # 'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+    # 'default': {
+    #     # 'ENGINE': 'django.db.backends.mysql',
+    #     'ENGINE' : 'mysql.connector.django',
+    #     'NAME': 'transparentcyprus',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306'
+    #     # 'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+    # }
+    'default' : {
+        'ENGINE' : 'django.db.backends.sqlite3',
+        'NAME' : BASE_DIR / 'db.sqlite3'
     }
 }
 
@@ -95,6 +99,7 @@ DEFAULT_MYSQL_ENGINES = (
     'django.db.backends.mysql',
     'django.contrib.gis.db.backends.mysql',
     'mysql.connector.django',
+    'django.db.backends.sqlite3',
 )
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from . import models
 
@@ -23,14 +24,27 @@ static_path = 'realestate/static/realestate'
 def default(response):
     return render(response,"realestate/default.html")
 
+def df_from_csv_dataset(filepath:str):
+    df= pd.read_csv(filepath)
+    df.columns = [i.lower() for i in df.columns]
+    return df
+def df_to_dj_template(df:pd.DataFrame):
+    ## parsing the DataFrame in json format. 
+    json_records = df.reset_index().to_json(orient ='records') 
+    data = [] 
+    data = json.loads(json_records) 
+    return data
 def real_estate_mortgage_statistics(response):
+    dataset = static_path+'/data/Real Estate Mortgage Statistics 2023 (csv).csv' 
+
     filename = 'real_estate_mortgage_statistics.png'
 
-    obj = models.Real_estate_mortgage_statistics.objects.all()
-    res_list = list(obj.values())
-    re_df = pd.DataFrame(res_list)
-
-    re_df.set_index(re_df['id'],inplace=True)
+    # obj = models.Real_estate_mortgage_statistics.objects.all()
+    # res_list = list(obj.values())
+    # re_df = pd.DataFrame(res_list)
+    re_df:pd.DataFrame = df_from_csv_dataset(dataset)
+    
+    # re_df.set_index(re_df['id'],inplace=True)
     # re_df = re_df.replace('',0)
     re_df[["mortgages","total_amount"]] = re_df[["mortgages","total_amount"]].apply(pd.to_numeric)
     re_df.fillna(0,inplace=True)
@@ -64,20 +78,20 @@ def real_estate_mortgage_statistics(response):
     # print(nicosia_pd)
     return render(response,
                   'realestate/real_estate_mortgage_statistics.html',
-                  {'objects':obj,
+                  {'objects':df_to_dj_template(re_df),
                    'paths':paths})
 
 def real_estate_sales_to_foreigners(response):
     filename = 'real_estate_sales_to_foreigners.png'
-    filepath = 'realestate/'+filename
+    dataset = static_path+'/data/Real Estate Sales to Foreigners 2023 (csv).csv'
 
-    obj = models.Real_estate_sales_to_foreigners.objects.all()
+    # obj = models.Real_estate_sales_to_foreigners.objects.all()
 
-    # turning into a dataframe
-    res_list = list(obj.values())
-    re_df = pd.DataFrame(res_list)
-    re_df.set_index(re_df['id'],inplace=True)
-
+    # # turning into a dataframe
+    # res_list = list(obj.values())
+    # re_df = pd.DataFrame(res_list)
+    # re_df.set_index(re_df['id'],inplace=True)
+    re_df = df_from_csv_dataset(dataset)
     # clean
     re_df[['nicosia','famagusta','larnaca','limassol','pafos','all_districts']] = re_df[['nicosia','famagusta','larnaca','limassol','pafos','all_districts']].apply(pd.to_numeric)
     re_df.fillna(0,inplace=True)
@@ -88,24 +102,26 @@ def real_estate_sales_to_foreigners(response):
     for typ in types:
         for cat in category:
             df = re_df.loc[(re_df['category']==cat) & (re_df['description']==typ) & (re_df['nicosia']>0)]
-            fig = px.line(df,title=f'{typ} | {cat}',x='month',y= df.columns[4:-2])
+            fig = px.line(df,title=f'{typ} | {cat}',x='month',y= df.columns[3:-1])
             fig.write_image(f"{static_path}/{typ}_{cat}_{filename}")
             types_paths.append(f"realestate/{typ}_{cat}_{filename}")
 
     return render(response,
                   'realestate/real_estate_sales_to_foreigners.html',
-                  {'objects':obj,
+                  {'objects':df_to_dj_template(re_df ),
                    'types_path':types_paths})
 
 def sales_transfers_of_real_estate(response):
     filename = 'sales_transfers_of_real_estate.png'
     filepath = 'realestate/'+filename
+    dataset = static_path + '/data/Sales-Transfers of Real Estate 2023 (csv).csv'
 
-    obj = models.Sales_transfers_of_real_estate.objects.all()
-    # turning into a dataframe
-    res_list = list(obj.values())
-    re_df = pd.DataFrame(res_list)
-    re_df.set_index(re_df['id'],inplace=True)
+    # obj = models.Sales_transfers_of_real_estate.objects.all()
+    # # turning into a dataframe
+    # res_list = list(obj.values())
+    # re_df = pd.DataFrame(res_list)
+    # re_df.set_index(re_df['id'],inplace=True)
+    re_df = df_from_csv_dataset(dataset)
 
     # clean
     re_df[['total_declared_amount','total_accepted_amount']] = re_df[['total_declared_amount','total_accepted_amount']].apply(pd.to_numeric)
@@ -119,11 +135,11 @@ def sales_transfers_of_real_estate(response):
 
         df_nic = re_df.loc[re_df['district']==district]
         df_nic = df_nic.loc[re_df['total_declared_amount']>0]
-        fig_nic = px.line(df_nic,title=district,x='month',y=df_nic.columns[5:-1])
+        fig_nic = px.line(df_nic,title=district,x='month',y=df_nic.columns[4:])
         fig_nic.write_image(f"{static_path}/{district}_{filename}")
 
         paths.append(f'realestate/{district}_{filename}')
-
+    obj = df_to_dj_template(re_df )
     return render(response,
                   'realestate/sales_transfers_of_real_estate.html',
                   {'objects':obj,
@@ -133,21 +149,26 @@ def sales_transfers_of_real_estate(response):
 def statistics_of_real_estate_sales_documents(response):
     filename = 'statistics_of_real_estate_sales_documents.png'
     filepath = 'realestate/'+filename
+    dataset = static_path+'/data/Statistics of Real Estate Sales Documents (all years) (csv).csv'
 
-    obj = models.Statistics_of_real_estate_sales_documents.objects.all()
+    re_df = df_from_csv_dataset(dataset)
 
-    # turning into a dataframe
-    res_list = list(obj.values())
-    re_df = pd.DataFrame(res_list)
-    re_df.set_index(re_df['id'],inplace=True)
+    # obj = models.Statistics_of_real_estate_sales_documents.objects.all()
+
+    # # turning into a dataframe
+    # res_list = list(obj.values())
+    # re_df = pd.DataFrame(res_list)
+    # re_df.set_index(re_df['id'],inplace=True)
 
     # clean
     re_df[['nicosia','famagusta','larnaca','limassol','pafos']] =re_df[['nicosia','famagusta','larnaca','limassol','pafos']].apply(pd.to_numeric)
     re_df.fillna(0,inplace=True)
 
     # graph
-    fig = px.line(re_df.loc[re_df['nicosia']>0],x='month',y= re_df.columns[1:-1])
+    fig = px.line(re_df.loc[re_df['nicosia']>0],x='month',y= re_df.columns[1:])
     fig.write_image(f'{static_path}/{filename}')
+
+    obj = df_to_dj_template(re_df)
     return render(response,
                   'realestate/statistics_of_real_estate_sales_documents.html',
                   {
